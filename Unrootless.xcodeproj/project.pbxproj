@@ -19,6 +19,8 @@
 		152A57411B663AA800C9FCB2 /* syscall.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A57401B663AA800C9FCB2 /* syscall.h */; };
 		152A57441B663BA300C9FCB2 /* kernel_info.c in Sources */ = {isa = PBXBuildFile; fileRef = 152A57421B663BA300C9FCB2 /* kernel_info.c */; };
 		152A57451B663BA300C9FCB2 /* kernel_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A57431B663BA300C9FCB2 /* kernel_info.h */; };
+		15B06F971BBD841A00ED3CF5 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15B06F951BBD841A00ED3CF5 /* LICENSE.txt */; };
+		15B06F981BBD841A00ED3CF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 15B06F961BBD841A00ED3CF5 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		152A57401B663AA800C9FCB2 /* syscall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = syscall.h; sourceTree = "<group>"; };
 		152A57421B663BA300C9FCB2 /* kernel_info.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kernel_info.c; sourceTree = "<group>"; };
 		152A57431B663BA300C9FCB2 /* kernel_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel_info.h; sourceTree = "<group>"; };
+		15B06F951BBD841A00ED3CF5 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		15B06F961BBD841A00ED3CF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +56,8 @@
 		1509BDCA1B6543AC00E6E1F9 = {
 			isa = PBXGroup;
 			children = (
+				15B06F951BBD841A00ED3CF5 /* LICENSE.txt */,
+				15B06F961BBD841A00ED3CF5 /* README.md */,
 				1509BDD61B6543AC00E6E1F9 /* Unrootless */,
 				1509BDD51B6543AC00E6E1F9 /* Products */,
 			);
@@ -160,6 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15B06F971BBD841A00ED3CF5 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15B06F981BBD841A00ED3CF5 /* README.md in Sources */,
 				1509BDD81B6543AC00E6E1F9 /* Unrootless.c in Sources */,
 				152A57391B6639B500C9FCB2 /* cpu_protections.c in Sources */,
 				152A57321B66399100C9FCB2 /* sysent.c in Sources */,
@@ -262,7 +270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Test/Info.plist;
+				INFOPLIST_FILE = Unrootless/Info.plist;
 				MODULE_NAME = de.linushenze.unrootless;
 				MODULE_START = unrootless_start;
 				MODULE_STOP = unrootless_stop;
@@ -277,7 +285,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Test/Info.plist;
+				INFOPLIST_FILE = Unrootless/Info.plist;
 				MODULE_NAME = de.linushenze.unrootless;
 				MODULE_START = unrootless_start;
 				MODULE_STOP = unrootless_stop;
