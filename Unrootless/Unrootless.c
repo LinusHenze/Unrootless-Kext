@@ -33,8 +33,6 @@ static int sysctl_rootless_csrFlags SYSCTL_HANDLER_ARGS;
 
 void (*_csr_set_allow_all)(int) = NULL;
 
-
-
 SYSCTL_NODE(_debug, // our parent
             OID_AUTO , // automatically assign us an object ID
             rootless , // our name
@@ -64,7 +62,7 @@ SYSCTL_PROC ( _debug_rootless, //our parent
              0, //argument passed to our handler
              sysctl_rootless_csrFlags, //our handler function
              "IU", // our data type ( unsigned integer )
-             "enable/disable rootless" // our description
+             "set csr flags" // our description
 );
 
 kern_return_t setCSR(boolean_t flag) {
