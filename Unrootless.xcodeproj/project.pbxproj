@@ -40,6 +40,7 @@
 		152A57431B663BA300C9FCB2 /* kernel_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel_info.h; sourceTree = "<group>"; };
 		15B06F951BBD841A00ED3CF5 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		15B06F961BBD841A00ED3CF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		15EC85A11C95D30C002ED12A /* csr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = csr.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				1509BDD71B6543AC00E6E1F9 /* Unrootless.c */,
+				15EC85A11C95D30C002ED12A /* csr.h */,
 				152A57301B66399100C9FCB2 /* sysent.c */,
 				152A57311B66399100C9FCB2 /* sysent.h */,
 				152A57341B6639B500C9FCB2 /* cpu_protections.c */,
