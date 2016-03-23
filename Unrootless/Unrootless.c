@@ -68,7 +68,7 @@ SYSCTL_PROC ( _debug_rootless, //our parent
 kern_return_t setCSR(boolean_t flag) {
     enable_kernel_write();
     if (rootless_state == 2) {
-        boot_args *args = (boot_args*) PE_state->bootArgs;
+        boot_args *args = (boot_args*) PE_state_loc->bootArgs;
         args->csrActiveConfig = csr_flags;
         disable_kernel_write();
         return KERN_SUCCESS;
@@ -78,16 +78,16 @@ kern_return_t setCSR(boolean_t flag) {
             if (csr_orig_state == 1) { // Rootless was on on start
                 _csr_set_allow_all(0);
             } else {
-                if (PE_state != NULL) {
-                    boot_args *args = (boot_args*) PE_state->bootArgs;
+                if (PE_state_loc != NULL) {
+                    boot_args *args = (boot_args*) PE_state_loc->bootArgs;
                     args->csrActiveConfig = ROOTLESS_DEFAULT_ON;
                 }
             }
         } else {
             _csr_set_allow_all(1);
         }
-    } else if (PE_state != NULL) {
-        boot_args *args = (boot_args*) PE_state->bootArgs;
+    } else if (PE_state_loc != NULL) {
+        boot_args *args = (boot_args*) PE_state_loc->bootArgs;
         if (flag == TRUE) {
             if (csr_orig_state == 1) { // Means rootless was on on start
                 args->csrActiveConfig = csr_orig_flags;
@@ -108,11 +108,11 @@ kern_return_t setCSR(boolean_t flag) {
 
 static int sysctl_rootless_disabled_func SYSCTL_HANDLER_ARGS {
     if (rootless_state == 2) { // Don't do anything
-        if (rootless_old_state != rootless_state && PE_state != NULL) {
+        if (rootless_old_state != rootless_state && PE_state_loc != NULL) {
             rootless_old_state = 2;
             sysctl_register_oid(&sysctl__debug_rootless_csrConfig);
             csr_flags = rootless_old_state ? ROOTLESS_DEFAULT_OFF : ROOTLESS_DEFAULT_ON;
-        } else if (PE_state == NULL) {
+        } else if (PE_state_loc == NULL) {
             rootless_state = rootless_old_state;
         }
         return sysctl_handle_int( oidp, oidp->oid_arg1 , oidp->oid_arg2 , req );
@@ -162,14 +162,14 @@ kern_return_t unrootless_start(kmod_info_t * ki, void *d)
         LOG_INFO("Trying _PE_state instead...");
     }
     
-    PE_state = (PE_state_t*) (solve_kernel_symbol(&g_kernel_info, "_PE_state"));
-    if (PE_state == NULL) {
+    PE_state_loc = (PE_state_t*) (solve_kernel_symbol(&g_kernel_info, "_PE_state"));
+    if (PE_state_loc == NULL) {
         if (_csr_set_allow_all == NULL) {
             LOG_ERROR("Couldn't find '_PE_state' and '_csr_set_allow_all', aborting...");
             return KERN_FAILURE;
         }
     } else {
-        csr_orig_flags = ((boot_args*) PE_state->bootArgs)->csrActiveConfig;
+        csr_orig_flags = ((boot_args*) PE_state_loc->bootArgs)->csrActiveConfig;
         csr_flags = csr_orig_flags;
     }
     

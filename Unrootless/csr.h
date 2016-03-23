@@ -32,7 +32,7 @@ typedef struct PE_state {
 #endif
 } PE_state_t;
 
-PE_state_t *PE_state = NULL;
+PE_state_t *PE_state_loc = NULL;
 
 #define BOOT_LINE_LENGTH        1024
 
