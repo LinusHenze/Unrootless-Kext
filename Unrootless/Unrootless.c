@@ -187,8 +187,8 @@ kern_return_t unrootless_start(kmod_info_t * ki, void *d)
         rootless_state = !_csr_check(0);
         csr_orig_state = _csr_check(0);
     } else {
-        rootless_state = (csr_orig_flags & CSR_VALID_FLAGS) == 0 ? 0 : 1;
-        csr_orig_state = (csr_orig_flags & CSR_VALID_FLAGS) == 0 ? 1 : 0;
+        rootless_state = !!csr_orig_flags;
+        csr_orig_state = !csr_orig_flags;
     }
     
     sysctl_register_oid(&sysctl__debug_rootless);
