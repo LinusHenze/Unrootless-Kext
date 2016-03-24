@@ -6,8 +6,66 @@
 //  Copyright © 2016 Linus Henze. All rights reserved.
 //
 
+/* The contents of this file were taken from the XNU-3248.20.55 source, released under the Apple Public Source License */
+ 
+/*
+ * Copyright (c) 2014 Apple Inc. All rights reserved.
+ *
+ * @APPLE_OSREFERENCE_LICENSE_HEADER_START@
+ *
+ * This file contains Original Code and/or Modifications of Original Code
+ * as defined in and that are subject to the Apple Public Source License
+ * Version 2.0 (the 'License'). You may not use this file except in
+ * compliance with the License. The rights granted to you under the License
+ * may not be used to create, or enable the creation or redistribution of,
+ * unlawful or unlicensed copies of an Apple operating system, or to
+ * circumvent, violate, or enable the circumvention or violation of, any
+ * terms of an Apple operating system software license agreement.
+ *
+ * Please obtain a copy of the License at
+ * http://www.opensource.apple.com/apsl/ and read it before using this file.
+ *
+ * The Original Code and all software distributed under the License are
+ * distributed on an 'AS IS' basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+ * EXPRESS OR IMPLIED, AND APPLE HEREBY DISCLAIMS ALL SUCH WARRANTIES,
+ * INCLUDING WITHOUT LIMITATION, ANY WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE, QUIET ENJOYMENT OR NON-INFRINGEMENT.
+ * Please see the License for the specific language governing rights and
+ * limitations under the License.
+ *
+ * @APPLE_OSREFERENCE_LICENSE_HEADER_END@
+ */
+
 #ifndef csr_h
 #define csr_h
+
+/* CSR configuration values */
+#define CSR_ALLOW_UNTRUSTED_KEXTS		(1 << 0)
+#define CSR_ALLOW_UNRESTRICTED_FS		(1 << 1)
+#define CSR_ALLOW_TASK_FOR_PID			(1 << 2)
+#define CSR_ALLOW_KERNEL_DEBUGGER		(1 << 3)
+#define CSR_ALLOW_APPLE_INTERNAL		(1 << 4)
+#define CSR_ALLOW_DESTRUCTIVE_DTRACE	(1 << 5) /* name deprecated */
+#define CSR_ALLOW_UNRESTRICTED_DTRACE	(1 << 5)
+#define CSR_ALLOW_UNRESTRICTED_NVRAM	(1 << 6)
+#define CSR_ALLOW_DEVICE_CONFIGURATION  (1 << 7) // allow csrutil enable/disable
+/* CSR configuration values - End */
+
+/* CSR valid configuration values */
+#define CSR_VALID_FLAGS (CSR_ALLOW_UNTRUSTED_KEXTS | \
+CSR_ALLOW_UNRESTRICTED_FS | \
+CSR_ALLOW_TASK_FOR_PID | \
+CSR_ALLOW_KERNEL_DEBUGGER | \
+CSR_ALLOW_APPLE_INTERNAL | \
+CSR_ALLOW_UNRESTRICTED_DTRACE | \
+CSR_ALLOW_UNRESTRICTED_NVRAM | \
+CSR_ALLOW_DEVICE_CONFIGURATION)
+/* CSR valid configuration values - End */
+
+/* CSR default configuration values */
+#define ROOTLESS_DEFAULT_ON  0
+#define ROOTLESS_DEFAULT_OFF 103
+/* CSR default configuration values - End */
 
 struct PE_Video {
     unsigned long   v_baseAddr;     /* Base address of video memory */
@@ -32,7 +90,7 @@ typedef struct PE_state {
 #endif
 } PE_state_t;
 
-#define kBootArgsFlagCSRConfigMode	(1 << 4)
+#define kBootArgsFlagCSRConfigMode	(1 << 4) // also needed to allow csrutil enable/disable
 
 PE_state_t *PE_state_loc = NULL;
 
@@ -96,27 +154,5 @@ typedef struct boot_args {
     uint32_t    __reserved4[728];
     
 } boot_args;
-
-#define CSR_ALLOW_UNTRUSTED_KEXTS		(1 << 0)
-#define CSR_ALLOW_UNRESTRICTED_FS		(1 << 1)
-#define CSR_ALLOW_TASK_FOR_PID			(1 << 2)
-#define CSR_ALLOW_KERNEL_DEBUGGER		(1 << 3)
-#define CSR_ALLOW_APPLE_INTERNAL		(1 << 4)
-#define CSR_ALLOW_DESTRUCTIVE_DTRACE	(1 << 5) /* name deprecated */
-#define CSR_ALLOW_UNRESTRICTED_DTRACE	(1 << 5)
-#define CSR_ALLOW_UNRESTRICTED_NVRAM	(1 << 6)
-#define CSR_ALLOW_DEVICE_CONFIGURATION  (1 << 7)
-
-#define CSR_VALID_FLAGS (CSR_ALLOW_UNTRUSTED_KEXTS | \
-CSR_ALLOW_UNRESTRICTED_FS | \
-CSR_ALLOW_TASK_FOR_PID | \
-CSR_ALLOW_KERNEL_DEBUGGER | \
-CSR_ALLOW_APPLE_INTERNAL | \
-CSR_ALLOW_UNRESTRICTED_DTRACE | \
-CSR_ALLOW_UNRESTRICTED_NVRAM | \
-CSR_ALLOW_DEVICE_CONFIGURATION)
-
-#define ROOTLESS_DEFAULT_ON  0
-#define ROOTLESS_DEFAULT_OFF 103
 
 #endif /* csr_h */

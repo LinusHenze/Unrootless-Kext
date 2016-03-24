@@ -10,5 +10,11 @@ Just open the Project in Xcode and select Product->Build.
 Copy the kext to a directory of your choice and make sure that the kext has the right permissions (sudo chown -R root:wheel <path to kext>)
 As stated above, you need to sign this kext with a valid certificate or you need an exploit ([like this](https://github.com/LinusHenze/anyKextLoader)) to make OS X load it.
 
+#Options
+This kext will register debug.rootless.disabled and debug.rootless.csrConfig in sysctl. 
+To disable rootless, enter "sysctl debug.rootless.disabled=1", to enable enter "sysctl debug.rootless.disabled=0" and to use your own config enter "sysctl debug.rootless.disabled=2". 
+If you choose to use your own config, debug.rootless.csrConfig will become visible and you can enter your own config there (see csr.h for valid configuration values). 
+If you would like to use the enable/disable options from csrutil without rebooting to Recovery OS, enter "sysctl debug.rootless.disabled=2 && sysctl debug.rootless.csrConfig=0xE7".
+
 #License
-Most files already contain the license they are distributed under (because I shamelessly copied them). If theres no license in a file, please see LICENSE.txt
+All files except Unrootless.c and csr.h were taken from [https://github.com/gdbinit/onyx-the-black-cat](https://github.com/gdbinit/onyx-the-black-cat). Unrootless.c and csr.h are distributed under the MIT license, see LICENSE.txt. csr.h contains code from the xnu kernel sources, released under the Apple Public Source License license.

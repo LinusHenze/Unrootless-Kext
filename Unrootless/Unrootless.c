@@ -120,6 +120,8 @@ static int sysctl_rootless_disabled_func SYSCTL_HANDLER_ARGS {
     
     if (rootless_old_state == 2) {
         sysctl_unregister_oid(&sysctl__debug_rootless_csrConfig);
+        boot_args *args = (boot_args*) PE_state_loc->bootArgs;
+        args->flags &= ~(kBootArgsFlagCSRConfigMode);
     }
     
     rootless_state = (rootless_state > 0) ? 1 : 0;

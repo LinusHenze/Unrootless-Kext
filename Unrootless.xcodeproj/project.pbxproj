@@ -20,7 +20,6 @@
 		152A57441B663BA300C9FCB2 /* kernel_info.c in Sources */ = {isa = PBXBuildFile; fileRef = 152A57421B663BA300C9FCB2 /* kernel_info.c */; };
 		152A57451B663BA300C9FCB2 /* kernel_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A57431B663BA300C9FCB2 /* kernel_info.h */; };
 		15B06F971BBD841A00ED3CF5 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15B06F951BBD841A00ED3CF5 /* LICENSE.txt */; };
-		15B06F981BBD841A00ED3CF5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 15B06F961BBD841A00ED3CF5 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,7 +178,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15B06F981BBD841A00ED3CF5 /* README.md in Sources */,
 				1509BDD81B6543AC00E6E1F9 /* Unrootless.c in Sources */,
 				152A57391B6639B500C9FCB2 /* cpu_protections.c in Sources */,
 				152A57321B66399100C9FCB2 /* sysent.c in Sources */,
