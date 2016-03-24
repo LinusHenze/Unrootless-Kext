@@ -133,6 +133,12 @@ static int sysctl_rootless_disabled_func SYSCTL_HANDLER_ARGS {
 
 static int sysctl_rootless_csrFlags SYSCTL_HANDLER_ARGS {
     csr_flags = csr_flags & CSR_VALID_FLAGS;
+    boot_args *args = (boot_args*) PE_state_loc->bootArgs;
+    if (csr_flags & CSR_ALLOW_DEVICE_CONFIGURATION) { // Allow using csrutil enable/disable
+        args->flags |= kBootArgsFlagCSRConfigMode;
+    } else {
+        args->flags &= ~(kBootArgsFlagCSRConfigMode);
+    }
     setCSR(1); // Value doesn't care...
     
     return sysctl_handle_int( oidp, oidp->oid_arg1 , oidp->oid_arg2 , req );

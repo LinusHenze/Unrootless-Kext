@@ -32,6 +32,8 @@ typedef struct PE_state {
 #endif
 } PE_state_t;
 
+#define kBootArgsFlagCSRConfigMode	(1 << 4)
+
 PE_state_t *PE_state_loc = NULL;
 
 #define BOOT_LINE_LENGTH        1024
