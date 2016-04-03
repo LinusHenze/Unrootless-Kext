@@ -177,8 +177,13 @@ kern_return_t unrootless_start(kmod_info_t * ki, void *d)
             return KERN_FAILURE;
         }
     } else {
-        csr_orig_flags = ((boot_args*) PE_state_loc->bootArgs)->csrActiveConfig;
+        boot_args *args = (boot_args*) PE_state_loc->bootArgs;
+        csr_orig_flags = args->csrActiveConfig;
         csr_flags = csr_orig_flags;
+        if (!(args->flags & kBootArgsFlagCSRActiveConfig)) {
+            LOG_INFO("Setting CSRActiveConfig flag...");
+            args->flags |= kBootArgsFlagCSRActiveConfig; // Needed on some mac's...
+        }
     }
     
     int(*_csr_check)(int);

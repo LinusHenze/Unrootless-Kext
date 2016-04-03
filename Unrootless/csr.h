@@ -90,7 +90,8 @@ typedef struct PE_state {
 #endif
 } PE_state_t;
 
-#define kBootArgsFlagCSRConfigMode	(1 << 4) // also needed to allow csrutil enable/disable
+#define kBootArgsFlagCSRConfigMode	 (1 << 4) // also needed to allow csrutil enable/disable
+#define kBootArgsFlagCSRActiveConfig (1 << 3) // not set on all mac's
 
 PE_state_t *PE_state_loc = NULL;
 
