@@ -114,6 +114,7 @@ struct sysent_yosemite {
 #define MAVERICKS   13
 #define YOSEMITE    14
 #define EL_CAPITAN  15
+#define SIERRA      16
 
 #ifdef DEBUG
 #undef DEBUG

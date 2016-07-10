@@ -16,9 +16,7 @@
 #include "kernel_info.h"
 #include "cpu_protections.h"
 #include "csr.h"
-
-kern_return_t Test_start(kmod_info_t * ki, void *d);
-kern_return_t Test_stop(kmod_info_t *ki, void *d);
+#include "idt.h"
 
 struct kernel_info g_kernel_info;
 extern const int version_major;
@@ -148,16 +146,18 @@ static int sysctl_rootless_csrFlags SYSCTL_HANDLER_ARGS {
 
 kern_return_t unrootless_start(kmod_info_t * ki, void *d)
 {
-    if (version_major != EL_CAPITAN) {
-        LOG_ERROR("You must run OS X El Capitan to unrootless.");
+    if (version_major != EL_CAPITAN && version_major != SIERRA) {
+        LOG_ERROR("You must run OS X El Capitan or macOS Sierra to unrootless.");
         return KERN_FAILURE;
     }
-    /* locate sysent table */
-    mach_vm_address_t kernel_base = 0;
-    if (find_sysent(&kernel_base) != KERN_SUCCESS)
-    {
-        return KERN_FAILURE;
-    }
+    
+    mach_vm_address_t idt_address = 0;
+    get_addr_idt(&idt_address);
+    // calculate the address of the int80 handler
+    mach_vm_address_t int80_address = calculate_int80address(idt_address);
+    // search backwards for the kernel base address (mach-o header)
+    mach_vm_address_t kernel_base = find_kernel_base(int80_address);
+    
     /* read kernel info from the disk image */
     if (init_kernel_info(&g_kernel_info, kernel_base) != KERN_SUCCESS)
     {
