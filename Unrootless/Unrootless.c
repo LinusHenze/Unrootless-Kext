@@ -1,6 +1,6 @@
 //
-//  Test.c
-//  Test
+//  Unrootless.c
+//  Unrootless
 //
 //  Created by Linus Henze on 26.07.15.
 //  Copyright © 2015 Linus Henze. All rights reserved.
@@ -204,8 +204,6 @@ kern_return_t unrootless_start(kmod_info_t * ki, void *d)
 
 kern_return_t unrootless_stop(kmod_info_t *ki, void *d)
 {
-    //cleanup_sysent();
-    //_csr_set_allow_all(0);
     setCSR(csr_orig_state);
     sysctl_unregister_oid(&sysctl__debug_rootless);
     sysctl_unregister_oid(&sysctl__debug_rootless_disabled);
