@@ -1,5 +1,5 @@
 # Unrootless-KEXT
-A kext that can be used to disable Rootless in OS X El Capitan. You need to sign it OR use an exploit to make OS X load it.
+A kext that can be used to disable Rootless in OS X El Capitan/macOS Sierra. You need to sign it OR use an exploit to make OS X load it.
 See [https://youtu.be/dq0-0WVGyq4](https://youtu.be/dq0-0WVGyq4)
 This kext can be loaded using [this](https://github.com/LinusHenze/anyKextLoader) exploit. (If you're running OS X 10.11 - 10.11.3, was fixed in OS X 10.11.4)
 
