@@ -10,15 +10,12 @@
 #include <sys/systm.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
-#include "my_data_definitions.h"
-#include "sysent.h"
-#include "syscall.h"
-#include "kernel_info.h"
-#include "cpu_protections.h"
-#include "csr.h"
-#include "idt.h"
+#include <libkern/libkern.h>
 
-struct kernel_info g_kernel_info;
+#include "GlobalDefinitions.h"
+#include "csr.h"
+#include "Kernel.h"
+
 extern const int version_major;
 
 static u_int32_t rootless_state = 0;
@@ -64,11 +61,11 @@ SYSCTL_PROC ( _debug_rootless, //our parent
 );
 
 kern_return_t setCSR(boolean_t flag) {
-    enable_kernel_write();
+    enableKernelWrite();
     if (rootless_state == 2) {
         boot_args *args = (boot_args*) PE_state_loc->bootArgs;
         args->csrActiveConfig = csr_flags;
-        disable_kernel_write();
+        disableKernelWrite();
         return KERN_SUCCESS;
     }
     if (_csr_set_allow_all != NULL) {
@@ -100,7 +97,7 @@ kern_return_t setCSR(boolean_t flag) {
             }
         }
     }
-    disable_kernel_write();
+    disableKernelWrite();
     return KERN_SUCCESS;
 }
 
@@ -151,29 +148,21 @@ kern_return_t unrootless_start(kmod_info_t * ki, void *d)
         return KERN_FAILURE;
     }
     
-    mach_vm_address_t idt_address = 0;
-    get_addr_idt(&idt_address);
-    // calculate the address of the int80 handler
-    mach_vm_address_t int80_address = calculate_int80address(idt_address);
-    // search backwards for the kernel base address (mach-o header)
-    mach_vm_address_t kernel_base = find_kernel_base(int80_address);
-    
-    /* read kernel info from the disk image */
-    if (init_kernel_info(&g_kernel_info, kernel_base) != KERN_SUCCESS)
-    {
+    if (!initKernelInfo()) {
+        LOG_ERROR("initKernelInfo() failed!");
         return KERN_FAILURE;
     }
     
-    _csr_set_allow_all=(void*)solve_kernel_symbol(&g_kernel_info, "_csr_set_allow_all");
+    _csr_set_allow_all = findKernelSymbol("_csr_set_allow_all");
     if (_csr_set_allow_all == NULL) {
         LOG_ERROR("Couldn't find '_csr_set_allow_all'");
         LOG_INFO("Trying _PE_state instead...");
     }
     
-    PE_state_loc = (PE_state_t*) (solve_kernel_symbol(&g_kernel_info, "_PE_state"));
+    PE_state_loc = (PE_state_t*) (findKernelSymbol("_PE_state"));
     if (PE_state_loc == NULL) {
         if (_csr_set_allow_all == NULL) {
-            LOG_ERROR("Couldn't find '_PE_state' and '_csr_set_allow_all', aborting...");
+            LOG_ERROR("Couldn't find '_PE_state' or '_csr_set_allow_all', aborting...");
             return KERN_FAILURE;
         }
     } else {
@@ -187,7 +176,7 @@ kern_return_t unrootless_start(kmod_info_t * ki, void *d)
     }
     
     int(*_csr_check)(int);
-    _csr_check = (void*)solve_kernel_symbol(&g_kernel_info, "_csr_check");
+    _csr_check = findKernelSymbol("_csr_check");
     if (_csr_set_allow_all != NULL) {
         rootless_state = !_csr_check(0);
         csr_orig_state = _csr_check(0);
@@ -210,5 +199,6 @@ kern_return_t unrootless_stop(kmod_info_t *ki, void *d)
     if (rootless_state == 2) {
         sysctl_unregister_oid(&sysctl__debug_rootless_csrConfig);
     }
+    cleanupKernelInfo();
     return KERN_SUCCESS;
 }

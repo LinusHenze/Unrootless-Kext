@@ -99,7 +99,7 @@ PE_state_t *PE_state_loc = NULL;
 
 struct Boot_Video {
     uint32_t	v_baseAddr;	/* Base address of video memory */
-    uint32_t	v_display;	/* Display Code (if Applicable */
+    uint32_t	v_display;	/* Display Code (if Applicable) */
     uint32_t	v_rowBytes;	/* Number of bytes per pixel row */
     uint32_t	v_width;	/* Width */
     uint32_t	v_height;	/* Height */

@@ -8,17 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1509BDD81B6543AC00E6E1F9 /* Unrootless.c in Sources */ = {isa = PBXBuildFile; fileRef = 1509BDD71B6543AC00E6E1F9 /* Unrootless.c */; };
-		152A57321B66399100C9FCB2 /* sysent.c in Sources */ = {isa = PBXBuildFile; fileRef = 152A57301B66399100C9FCB2 /* sysent.c */; };
-		152A57331B66399100C9FCB2 /* sysent.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A57311B66399100C9FCB2 /* sysent.h */; };
-		152A57391B6639B500C9FCB2 /* cpu_protections.c in Sources */ = {isa = PBXBuildFile; fileRef = 152A57341B6639B500C9FCB2 /* cpu_protections.c */; };
-		152A573A1B6639B500C9FCB2 /* cpu_protections.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A57351B6639B500C9FCB2 /* cpu_protections.h */; };
-		152A573B1B6639B500C9FCB2 /* idt.c in Sources */ = {isa = PBXBuildFile; fileRef = 152A57361B6639B500C9FCB2 /* idt.c */; };
-		152A573C1B6639B500C9FCB2 /* idt.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A57371B6639B500C9FCB2 /* idt.h */; };
-		152A573D1B6639B500C9FCB2 /* my_data_definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A57381B6639B500C9FCB2 /* my_data_definitions.h */; };
-		152A573F1B663A8300C9FCB2 /* sysproto.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A573E1B663A8300C9FCB2 /* sysproto.h */; };
-		152A57411B663AA800C9FCB2 /* syscall.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A57401B663AA800C9FCB2 /* syscall.h */; };
-		152A57441B663BA300C9FCB2 /* kernel_info.c in Sources */ = {isa = PBXBuildFile; fileRef = 152A57421B663BA300C9FCB2 /* kernel_info.c */; };
-		152A57451B663BA300C9FCB2 /* kernel_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 152A57431B663BA300C9FCB2 /* kernel_info.h */; };
+		156A27311DAD20FD0044AE0B /* Kernel.c in Sources */ = {isa = PBXBuildFile; fileRef = 156A272F1DAD20FD0044AE0B /* Kernel.c */; };
+		156A27321DAD20FD0044AE0B /* Kernel.h in Headers */ = {isa = PBXBuildFile; fileRef = 156A27301DAD20FD0044AE0B /* Kernel.h */; };
+		156A27351DAD31550044AE0B /* Filesystem.c in Sources */ = {isa = PBXBuildFile; fileRef = 156A27331DAD31550044AE0B /* Filesystem.c */; };
+		156A27361DAD31550044AE0B /* Filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 156A27341DAD31550044AE0B /* Filesystem.h */; };
 		15B06F971BBD841A00ED3CF5 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15B06F951BBD841A00ED3CF5 /* LICENSE.txt */; };
 /* End PBXBuildFile section */
 
@@ -26,17 +19,11 @@
 		1509BDD41B6543AC00E6E1F9 /* Unrootless.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Unrootless.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		1509BDD71B6543AC00E6E1F9 /* Unrootless.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Unrootless.c; sourceTree = "<group>"; };
 		1509BDD91B6543AC00E6E1F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		152A57301B66399100C9FCB2 /* sysent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sysent.c; sourceTree = "<group>"; };
-		152A57311B66399100C9FCB2 /* sysent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sysent.h; sourceTree = "<group>"; };
-		152A57341B6639B500C9FCB2 /* cpu_protections.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cpu_protections.c; sourceTree = "<group>"; };
-		152A57351B6639B500C9FCB2 /* cpu_protections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_protections.h; sourceTree = "<group>"; };
-		152A57361B6639B500C9FCB2 /* idt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = idt.c; sourceTree = "<group>"; };
-		152A57371B6639B500C9FCB2 /* idt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idt.h; sourceTree = "<group>"; };
-		152A57381B6639B500C9FCB2 /* my_data_definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_data_definitions.h; sourceTree = "<group>"; };
-		152A573E1B663A8300C9FCB2 /* sysproto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sysproto.h; sourceTree = "<group>"; };
-		152A57401B663AA800C9FCB2 /* syscall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = syscall.h; sourceTree = "<group>"; };
-		152A57421B663BA300C9FCB2 /* kernel_info.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kernel_info.c; sourceTree = "<group>"; };
-		152A57431B663BA300C9FCB2 /* kernel_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel_info.h; sourceTree = "<group>"; };
+		1518C1DC1DAE7B3B006DDBBB /* GlobalDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalDefinitions.h; sourceTree = "<group>"; };
+		156A272F1DAD20FD0044AE0B /* Kernel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Kernel.c; sourceTree = "<group>"; };
+		156A27301DAD20FD0044AE0B /* Kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kernel.h; sourceTree = "<group>"; };
+		156A27331DAD31550044AE0B /* Filesystem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Filesystem.c; sourceTree = "<group>"; };
+		156A27341DAD31550044AE0B /* Filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filesystem.h; sourceTree = "<group>"; };
 		15B06F951BBD841A00ED3CF5 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		15B06F961BBD841A00ED3CF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		15EC85A11C95D30C002ED12A /* csr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = csr.h; sourceTree = "<group>"; };
@@ -75,18 +62,12 @@
 			isa = PBXGroup;
 			children = (
 				1509BDD71B6543AC00E6E1F9 /* Unrootless.c */,
+				156A272F1DAD20FD0044AE0B /* Kernel.c */,
+				156A27301DAD20FD0044AE0B /* Kernel.h */,
+				156A27331DAD31550044AE0B /* Filesystem.c */,
+				156A27341DAD31550044AE0B /* Filesystem.h */,
 				15EC85A11C95D30C002ED12A /* csr.h */,
-				152A57301B66399100C9FCB2 /* sysent.c */,
-				152A57311B66399100C9FCB2 /* sysent.h */,
-				152A57341B6639B500C9FCB2 /* cpu_protections.c */,
-				152A57351B6639B500C9FCB2 /* cpu_protections.h */,
-				152A57361B6639B500C9FCB2 /* idt.c */,
-				152A57371B6639B500C9FCB2 /* idt.h */,
-				152A57381B6639B500C9FCB2 /* my_data_definitions.h */,
-				152A573E1B663A8300C9FCB2 /* sysproto.h */,
-				152A57401B663AA800C9FCB2 /* syscall.h */,
-				152A57421B663BA300C9FCB2 /* kernel_info.c */,
-				152A57431B663BA300C9FCB2 /* kernel_info.h */,
+				1518C1DC1DAE7B3B006DDBBB /* GlobalDefinitions.h */,
 				1509BDD91B6543AC00E6E1F9 /* Info.plist */,
 			);
 			path = Unrootless;
@@ -99,13 +80,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				152A573C1B6639B500C9FCB2 /* idt.h in Headers */,
-				152A57451B663BA300C9FCB2 /* kernel_info.h in Headers */,
-				152A573F1B663A8300C9FCB2 /* sysproto.h in Headers */,
-				152A573D1B6639B500C9FCB2 /* my_data_definitions.h in Headers */,
-				152A573A1B6639B500C9FCB2 /* cpu_protections.h in Headers */,
-				152A57411B663AA800C9FCB2 /* syscall.h in Headers */,
-				152A57331B66399100C9FCB2 /* sysent.h in Headers */,
+				156A27321DAD20FD0044AE0B /* Kernel.h in Headers */,
+				156A27361DAD31550044AE0B /* Filesystem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +112,7 @@
 		1509BDCB1B6543AC00E6E1F9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Linus Henze";
 				TargetAttributes = {
 					1509BDD31B6543AC00E6E1F9 = {
@@ -179,10 +155,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1509BDD81B6543AC00E6E1F9 /* Unrootless.c in Sources */,
-				152A57391B6639B500C9FCB2 /* cpu_protections.c in Sources */,
-				152A57321B66399100C9FCB2 /* sysent.c in Sources */,
-				152A57441B663BA300C9FCB2 /* kernel_info.c in Sources */,
-				152A573B1B6639B500C9FCB2 /* idt.c in Sources */,
+				156A27311DAD20FD0044AE0B /* Kernel.c in Sources */,
+				156A27351DAD31550044AE0B /* Filesystem.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,8 +176,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -224,7 +200,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -244,8 +220,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -260,7 +238,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -271,6 +249,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Unrootless/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULE_NAME = de.linushenze.unrootless;
 				MODULE_START = unrootless_start;
 				MODULE_STOP = unrootless_stop;
@@ -287,6 +266,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Unrootless/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULE_NAME = de.linushenze.unrootless;
 				MODULE_START = unrootless_start;
 				MODULE_STOP = unrootless_stop;
