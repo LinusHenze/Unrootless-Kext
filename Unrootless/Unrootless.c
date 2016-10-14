@@ -178,12 +178,14 @@ kern_return_t unrootless_start(kmod_info_t * ki, void *d)
     int(*_csr_check)(int);
     _csr_check = findKernelSymbol("_csr_check");
     if (_csr_set_allow_all != NULL) {
-        rootless_state = !_csr_check(0);
+        rootless_state = _csr_check(0);
         csr_orig_state = _csr_check(0);
     } else {
-        rootless_state = !!csr_orig_flags;
+        rootless_state = !csr_orig_flags;
         csr_orig_state = !csr_orig_flags;
     }
+    
+    setCSR(!rootless_state);
     
     sysctl_register_oid(&sysctl__debug_rootless);
     sysctl_register_oid(&sysctl__debug_rootless_disabled);
