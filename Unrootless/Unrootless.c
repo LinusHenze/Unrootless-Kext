@@ -143,8 +143,8 @@ static int sysctl_rootless_csrFlags SYSCTL_HANDLER_ARGS {
 
 kern_return_t unrootless_start(kmod_info_t * ki, void *d)
 {
-    if (version_major != EL_CAPITAN && version_major != SIERRA) {
-        LOG_ERROR("You must run OS X El Capitan or macOS Sierra to unrootless.");
+    if (version_major != EL_CAPITAN && version_major != SIERRA && version_major != HIGH_SIERRA) {
+        LOG_ERROR("You must run OS X El Capitan or macOS (High) Sierra to unrootless.");
         return KERN_FAILURE;
     }
     
