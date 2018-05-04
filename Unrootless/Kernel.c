@@ -6,6 +6,7 @@
 //  Copyright © 2016 Linus Henze. All rights reserved.
 //
 
+#include <kern/host.h>
 #include "Kernel.h"
 #include "Filesystem.h"
 
@@ -19,23 +20,9 @@ static char *kernel_paths[] = {
 
 struct KernelInfo kInfo;
 
-mach_vm_address_t getIdtAddr() {
-    uint8_t idt[10];
-    asm volatile("sidt %0" : "=m" (idt));
-    return *(mach_vm_address_t *)(idt+2);
-}
-
-mach_vm_address_t getInt80Address() {
-    struct IDT_Desc_AMD64 *idtDescriptors = (struct IDT_Desc_AMD64*) getIdtAddr();
-    mach_vm_address_t int80Address = (uint64_t) idtDescriptors[0x80].offset_high << 32;
-    int80Address += (uint32_t) idtDescriptors[0x80].offset_middle << 16;
-    int80Address += idtDescriptors[0x80].offset_low;
-    
-    return int80Address;
-}
-
 mach_vm_address_t findKernelBase() {
-    mach_vm_address_t searchAddress = getInt80Address();
+    host_priv_t host = host_priv_self();
+    mach_vm_address_t searchAddress = (mach_vm_address_t) host & 0xfffffffffff00000;
     while (searchAddress > 0)
     {
         if (*(uint32_t*)(searchAddress) == MH_MAGIC_64)
