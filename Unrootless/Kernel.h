@@ -45,12 +45,12 @@ struct KernelInfo {
 
 extern struct KernelInfo kInfo;
 
-mach_vm_address_t findKernelBase();
-bool initKernelInfo();
-void cleanupKernelInfo();
+mach_vm_address_t findKernelBase(void);
+bool initKernelInfo(void);
+void cleanupKernelInfo(void);
 void *findKernelSymbol(char *sym);
 
-void enableKernelWrite();
-void disableKernelWrite();
+void enableKernelWrite(void);
+void disableKernelWrite(void);
 
 #endif /* Kernel_h */
