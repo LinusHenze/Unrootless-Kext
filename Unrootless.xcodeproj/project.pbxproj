@@ -261,7 +261,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Unrootless/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MODULE_NAME = de.linushenze.unrootless;
 				MODULE_START = unrootless_start;
 				MODULE_STOP = unrootless_stop;
@@ -278,7 +278,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Unrootless/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MODULE_NAME = de.linushenze.unrootless;
 				MODULE_START = unrootless_start;
 				MODULE_STOP = unrootless_stop;
