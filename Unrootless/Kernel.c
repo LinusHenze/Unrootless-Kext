@@ -23,10 +23,8 @@ struct KernelInfo kInfo;
 mach_vm_address_t findKernelBase() {
     host_priv_t host = host_priv_self();
     mach_vm_address_t searchAddress = (mach_vm_address_t) host & 0xfffffffffff00000;
-    while (searchAddress > 0)
-    {
-        if (*(uint32_t*)(searchAddress) == MH_MAGIC_64)
-        {
+    while (searchAddress > 0) {
+        if (*(uint32_t*)(searchAddress) == MH_MAGIC_64) {
             // Make sure this is really the Header
             // If it is, the __TEXT load command will follow
             struct segment_command_64 *__text = (struct segment_command_64*) (searchAddress + sizeof(struct mach_header_64));

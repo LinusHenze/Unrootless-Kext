@@ -29,35 +29,35 @@ static int sysctl_rootless_csrFlags SYSCTL_HANDLER_ARGS;
 void (*_csr_set_allow_all)(int) = NULL;
 
 SYSCTL_NODE(_debug, // our parent
-            OID_AUTO , // automatically assign us an object ID
-            rootless , // our name
-            CTLFLAG_RW, // we wil be creating children therefore , read/write
-            0, // Handler function ( none selected )
+            OID_AUTO, // automatically assign us an object ID
+            rootless, // our name
+            CTLFLAG_RW, // we wil be creating children therefore, read/write
+            0, // Handler function (none selected)
             "rootless"
 );
 
-SYSCTL_PROC ( _debug_rootless, //our parent
-             OID_AUTO , // automaticall assign us an object ID
-             disabled, // our name
-             ( CTLTYPE_INT | // type flag
-              CTLFLAG_RW | CTLFLAG_ANYBODY ), //access flag ( read/write by anybody )
-             &rootless_state, // location of our data
-             0, //argument passed to our handler
-             sysctl_rootless_disabled_func, //our handler function
-             "IU", // our data type ( unsigned integer )
-             "enable/disable rootless" // our description
+SYSCTL_PROC(_debug_rootless, // our parent
+            OID_AUTO, // automaticall assign us an object ID
+            disabled, // our name
+            (CTLTYPE_INT | // type flag
+             CTLFLAG_RW  | CTLFLAG_ANYBODY), // access flag (read/write by anybody)
+            &rootless_state, // location of our data
+            0, // argument passed to our handler
+            sysctl_rootless_disabled_func, // our handler function
+            "IU", // our data type (unsigned integer)
+            "enable/disable rootless" // our description
 );
 
-SYSCTL_PROC ( _debug_rootless, //our parent
-             OID_AUTO , // automaticall assign us an object ID
-             csrConfig, // our name
-             ( CTLTYPE_INT | // type flag
-              CTLFLAG_RW | CTLFLAG_ANYBODY ), //access flag ( read/write by anybody )
-             &csr_flags, // location of our data
-             0, //argument passed to our handler
-             sysctl_rootless_csrFlags, //our handler function
-             "IU", // our data type ( unsigned integer )
-             "set csr flags" // our description
+SYSCTL_PROC(_debug_rootless, // our parent
+            OID_AUTO , // automaticall assign us an object ID
+            csrConfig, // our name
+            (CTLTYPE_INT | // type flag
+             CTLFLAG_RW  | CTLFLAG_ANYBODY), // access flag (read/write by anybody)
+            &csr_flags, // location of our data
+            0, // argument passed to our handler
+            sysctl_rootless_csrFlags, // our handler function
+            "IU", // our data type (unsigned integer)
+            "set csr flags" // our description
 );
 
 kern_return_t setCSR(boolean_t flag) {
@@ -110,7 +110,7 @@ static int sysctl_rootless_disabled_func SYSCTL_HANDLER_ARGS {
         } else if (PE_state_loc == NULL) {
             rootless_state = rootless_old_state;
         }
-        return sysctl_handle_int( oidp, oidp->oid_arg1 , oidp->oid_arg2 , req );
+        return sysctl_handle_int(oidp, oidp->oid_arg1, oidp->oid_arg2, req);
     }
     
     if (rootless_old_state == 2) {
@@ -125,7 +125,7 @@ static int sysctl_rootless_disabled_func SYSCTL_HANDLER_ARGS {
     
     rootless_old_state = rootless_state;
     
-    return sysctl_handle_int( oidp, oidp->oid_arg1 , oidp->oid_arg2 , req );
+    return sysctl_handle_int(oidp, oidp->oid_arg1, oidp->oid_arg2, req);
 }
 
 static int sysctl_rootless_csrFlags SYSCTL_HANDLER_ARGS {
@@ -138,13 +138,12 @@ static int sysctl_rootless_csrFlags SYSCTL_HANDLER_ARGS {
     }
     setCSR(1); // Value doesn't care...
     
-    return sysctl_handle_int( oidp, oidp->oid_arg1 , oidp->oid_arg2 , req );
+    return sysctl_handle_int(oidp, oidp->oid_arg1, oidp->oid_arg2, req);
 }
 
-kern_return_t unrootless_start(kmod_info_t * ki, void *d)
-{
-    if (version_major != EL_CAPITAN && version_major != SIERRA && version_major != HIGH_SIERRA) {
-        LOG_ERROR("You must run OS X El Capitan or macOS (High) Sierra to unrootless.");
+kern_return_t unrootless_start(kmod_info_t * ki, void *d) {
+    if (version_major < EL_CAPITAN || version_major > CATALINA) {
+        LOG_ERROR("You must run OS X >= El Capitan or macOS <= Catalina to unrootless.");
         return KERN_FAILURE;
     }
     
@@ -193,8 +192,7 @@ kern_return_t unrootless_start(kmod_info_t * ki, void *d)
     return KERN_SUCCESS;
 }
 
-kern_return_t unrootless_stop(kmod_info_t *ki, void *d)
-{
+kern_return_t unrootless_stop(kmod_info_t *ki, void *d) {
     setCSR(csr_orig_state);
     sysctl_unregister_oid(&sysctl__debug_rootless);
     sysctl_unregister_oid(&sysctl__debug_rootless_disabled);
