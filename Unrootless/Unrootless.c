@@ -152,10 +152,12 @@ kern_return_t unrootless_start(kmod_info_t * ki, void *d) {
         return KERN_FAILURE;
     }
     
-    _csr_set_allow_all = findKernelSymbol("_csr_set_allow_all");
-    if (_csr_set_allow_all == NULL) {
-        LOG_ERROR("Couldn't find '_csr_set_allow_all'");
-        LOG_INFO("Trying _PE_state instead...");
+    if (version_major == EL_CAPITAN) {
+        _csr_set_allow_all = findKernelSymbol("_csr_set_allow_all");
+        if (_csr_set_allow_all == NULL) {
+            LOG_ERROR("Couldn't find '_csr_set_allow_all'");
+            LOG_INFO("Trying _PE_state instead...");
+        }
     }
     
     PE_state_loc = (PE_state_t*) (findKernelSymbol("_PE_state"));
